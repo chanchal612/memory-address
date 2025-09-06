@@ -35,7 +35,7 @@ Example: int num = 0x1AD; represents a decimal value of 429.
 
 2^40=1 TB
 
-Memory Cells and Data Storage
+#Memory Cells and Data Storage
 
 1.RAM is divided into equal parts called memory cells, and each cell stores 1 byte of data using the binary number system.
 
@@ -52,7 +52,7 @@ Memory Cells and Data Storage
     -Stored in consecutive memory locations
 
 
-Residence Memory & Physical Address 
+#Residence Memory & Physical Address 
 
 1.Residence memory is the portion of RAM where a program is loaded during execution.
 
@@ -67,159 +67,161 @@ Residence Memory & Physical Address
     -0x00000 to 0xFFFFF (i.e., 1 MB total addressable space)
 
     -All C variables must be stored within this address range.
-Segmentation in C and Operating System – Quick Notes
+#Segmentation in C and Operating System 
 
-Segmentation in OS & C:
+1.Segmentation in OS & C:
 
-RAM of size 1 MB is divided into 16 equal parts (segments).
+    -RAM of size 1 MB is divided into 16 equal parts (segments).
 
-Each segment = 64 KB, and this process is called segmentation.
+    -Each segment = 64 KB, and this process is called segmentation.
 
-16
-×
-64
- KB
-=
-1
- MB
-16×64 KB=1 MB
+    -16×64 KB=1 MB
 
-Memory Address Structure in Turbo C 3.0:
 
-Physical memory address = 20-bit address.
+2.Memory Address Structure in Turbo C 3.0:
 
-But pointers in C are not 20-bit, so segmentation is used.
+    -Physical memory address = 20-bit address.
 
-Address = Segment:Offset, where:
+    -But pointers in C are not 20-bit, so segmentation is used.
 
-Segment number = 4 hex digits
+    -Address = Segment:Offset, where:
 
-Offset address = 4 hex digits
+         -Segment number = 4 hex digits
 
-E.g., Address 0x500F1 → Segment: 0x5000, Offset: 0x00F1
+         -Offset address = 4 hex digits
 
-Pointer Types in Turbo C 3.0:
+         -E.g., Address 0x500F1 → Segment: 0x5000, Offset: 0x00F1
 
-To handle limited pointer size:
+3.Pointer Types in Turbo C 3.0:
 
-near pointer → accesses only current 64KB segment
+    -To handle limited pointer size:
 
-far pointer → accesses full 1MB using segment:offset
+         -near pointer → accesses only current 64KB segment
 
-huge pointer → like far, but can move across segments
+         -far pointer → accesses full 1MB using segment:offset
 
-Offset Address in C:
+         -huge pointer → like far, but can move across segments
 
-The offset is the position of a variable within a segment.
+4.Offset Address in C:
 
-Ranges from 0x0000 to 0xFFFF.Data Segment in C – Quick Notes
+    -The offset is the position of a variable within a segment.
 
-Each memory segment has a specific purpose in Turbo C (DOS-based systems):
+    -Ranges from 0x0000 to 0xFFFF.
 
-Example:
+#Data Segment in C
 
-Segment 15 → ROM
+1.Each memory segment has a specific purpose in Turbo C (DOS-based systems):
 
-Segment 14 → BIOS
+    -Example:
 
-Segment 8 → Special segment called Data Segment
+         -Segment 15 → ROM
 
-Segment 8: Data Segment is crucial for C programming and is used to store:
+         -Segment 14 → BIOS
 
-Global variables
+         -Segment 8 → Special segment called Data Segment
 
-Static variables
+2.Segment 8: Data Segment is crucial for C programming and is used to store:
 
-Constants/data used during program execution
+    -Global variables
 
-The Data Segment is divided into 4 parts (details usually discussed in low-level memory models or advanced chapters like pointers/unions in graphics programming).
+    -Static variables
 
-Accessing special memory areas (like text/graphics video memory) is possible using pointers and unions, typically in graphics programming with 255-color modes (older DOS-style programming).Stack Area in C (Turbo C 3.0) – Quick Notes
+    -Constants/data used during program 
 
-Stack Area stores automatic variables and constants, including:
+#Stack Area in C (Turbo C 3.0) 
 
-Local variables with default (auto) storage class
+1.Stack Area stores automatic variables and constants, including:
 
-Function parameters and return values
+    -Local variables with default (auto) storage class
 
-Constants used in expressions (int, float, char, string)
+    -Function parameters and return values
 
-Automatic variables are temporary:
+    -Constants used in expressions (int, float, char, string)
 
-Created when the block is entered
+2.Automatic variables are temporary:
 
-Destroyed when the block ends (out of scope)
+    -Created when the block is entered
 
-Stack is also called the Temporary Memory Area
+    -Destroyed when the block ends (out of scope)
 
-Stack follows LIFO (Last-In, First-Out) structure:
+    -Stack is also called the Temporary Memory Area
 
-Last variable pushed is the first to be accessed
+3.Stack follows LIFO (Last-In, First-Out) structure:
 
-This affects the order in which values are read (especially when not explicitly referenced)
+    -Last variable pushed is the first to be accessed
 
-Initialized vs. Uninitialized Variables in Stack:
+    -This affects the order in which values are read (especially when not explicitly referenced)
 
-Initialized variables are stored closer (on top) in the stack
+4.Initialized vs. Uninitialized Variables in Stack:
 
-Uninitialized variables are stored further away
+    -Initialized variables are stored closer (on top) in the stack
 
-This affects the default output in Turbo C when variable names are omitted in printfData Area in C – Quick Notes
+    -Uninitialized variables are stored further away
 
-Data Area stores:
+    -This affects the default output in Turbo C when variable names are omitted in printf.
 
-All static variables
+#Data Area in C 
 
-All extern variables
+1.Data Area stores:
 
-It is a permanent memory area (unlike stack)
+    -All static variables
 
-Variables in the data area are not destroyed after going out of scope — they retain their values throughout the program's execution.
+    -All extern variables
 
-This area is used when a variable needs to preserve its value between function calls or loops.
+    -It is a permanent memory area (unlike stack)
 
-Static variables are initialized only once, and the value is updated (if modified) and retained in the next usage.Heap Area in C – Quick Notes
+2.Variables in the data area are not destroyed after going out of scope — they retain their values throughout the program's execution.
 
-Heap Area is used for dynamic memory allocation at runtime.
+3.This area is used when a variable needs to preserve its value between function calls or loops.
 
-Memory from the heap is manually managed by the programmer.
+4.Static variables are initialized only once, and the value is updated (if modified) and retained in the next usage.
 
-In C, memory is allocated in the heap using functions like:
+#Heap Area in C 
 
-malloc() – allocates uninitialized memory
+1.Heap Area is used for dynamic memory allocation at runtime.
 
-calloc() – allocates and initializes memory to zero
+    -Memory from the heap is manually managed by the programmer.
 
-The size of the heap area is not fixed — it depends on the available free memory in the system at runtime.
+2.In C, memory is allocated in the heap using functions like:
 
-Memory allocated in the heap persists until it is manually freed using free() — unlike stack or data area, the lifetime is programmer-controlled.Code Area in C – Quick Notes
+    -malloc() – allocates uninitialized memory
 
-Code Area (also called text segment) is the memory region where the compiled program instructions (code) are stored.
+    -calloc() – allocates and initializes memory to zero
 
-This area is typically read-only, to prevent accidental modification of program instructions during execution.
+3.The size of the heap area is not fixed — it depends on the available free memory in the system at runtime.
 
-The size of the code area is fixed at the time of program loading and does not change during execution.
+4.Memory allocated in the heap persists until it is manually freed using free() — unlike stack or data area, the lifetime is programmer-controlled.
 
-Function pointers can access and reference addresses in the code area, allowing dynamic function calls.Data Types in C – Quick Notes
+#Code Area in C – 
 
-C data types can be broadly classified into:
+1.Code Area (also called text segment) is the memory region where the compiled program instructions (code) are stored.
 
-Integral types (whole numbers):
+2.This area is typically read-only, to prevent accidental modification of program instructions during execution.
 
-char — stores single characters (1 byte)
+3.The size of the code area is fixed at the time of program loading and does not change during execution.
 
-int — stores integers (typically 2 or 4 bytes)
+4.Function pointers can access and reference addresses in the code area, allowing dynamic function calls.
 
-Real (floating-point) types:
+#Data Types in C -
 
-float — single precision decimal numbers
+1.C data types can be broadly classified into:
 
-double — double precision decimal numbers
+    -Integral types (whole numbers):
 
-Void type:
+         -char — stores single characters (1 byte)
 
-void represents no data or nothing (used in functions for no return value or generic pointers).
+         -int — stores integers (typically 2 or 4 bytes)
 
-Note:
+         -Real (floating-point) types:
 
-Apart from these primitive/basic types, many other data types exist (like long, short, unsigned, structures, unions, enums, etc.) which are often defined in header files or advanced topics.
+         -float — single precision decimal numbers
+
+         -double — double precision decimal numbers
+
+2.Void type:
+
+    -void represents no data or nothing (used in functions for no return value or generic pointers).
+
+3.Note:
+
+    -Apart from these primitive/basic types, many other data types exist (like long, short, unsigned, structures, unions, enums, etc.) which are often defined in header files or advanced topics.
