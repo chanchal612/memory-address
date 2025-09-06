@@ -1,5 +1,5 @@
 # memory-address
-Hexadecimal Representation
+#Hexadecimal Representation
 
 
 1.Hexadecimal System (Base-16) uses 16 digits: 0–9 and A–F, where A = 10, B = 11, ..., F = 15.
@@ -16,7 +16,7 @@ Example: int num = 0x1AD; represents a decimal value of 429.
 
 
 
-Memory Address Range
+#Memory Address Range
 
 1.Address range depends on the number of address lines (bits).
    -For a 20-bit address bus:
